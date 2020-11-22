@@ -1,0 +1,17 @@
+name: {{cookiecutter.project_name}}
+
+conda_env: conda_env.yml
+# Can have a docker_env instead of a conda_env, e.g.
+# docker_env:
+#    image:  mlflow-docker-example
+
+entry_points:
+  main:
+    parameters:
+      data_file: path
+      regularization: {type: float, default: 0.1}
+    command: "train_model.py -r {regularization} {data_file}"
+  validate:
+    parameters:
+      data_file: path
+    command: "predict_model.py {data_file}"
